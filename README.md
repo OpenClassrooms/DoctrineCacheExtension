@@ -3,22 +3,21 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cb725585-b433-4a21-96aa-30a0148ecd9f/mini.png)](https://insight.sensiolabs.com/projects/cb725585-b433-4a21-96aa-30a0148ecd9f)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/Cache/badge.png?branch=master)](https://coveralls.io/r/OpenClassrooms/Cache?branch=master)
 
-Cache adds features to Doctrine Cache implementation
+Doctrine Cache extension adds features to Doctrine Cache implementation
 - Default lifetime
 - Fetch with a namespace
 - Save with a namespace
 - Cache invalidation through namespace strategy
-- CacheProvider Builder
 
 ## Installation
-The easiest way to install Cache is via [composer](http://getcomposer.org/).
+The easiest way to install DoctrineCacheExtension is via [composer](http://getcomposer.org/).
 
 Create the following `composer.json` file and run the `php composer.phar install` command to install it.
 
 ```json
 {
     "require": {
-        "openclassrooms/cache": "*"
+        "openclassrooms/doctrine-cache-extension": "*"
     }
 }
 ```
@@ -26,7 +25,7 @@ Create the following `composer.json` file and run the `php composer.phar install
 <?php
 require 'vendor/autoload.php';
 
-use OpenClassrooms\Cache\Cache\Cache;
+use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
 
 //do things
 ```
@@ -34,11 +33,11 @@ use OpenClassrooms\Cache\Cache\Cache;
 
 ## Usage
 ### Instantiation
-OC Cache needs a Doctrine CacheProvider to be instantiate.
+OpenClassrooms CacheProviderDecorator needs a Doctrine CacheProvider to be instantiate.
 ```php
 $cacheProvider = new ArrayCache();
 
-$cache = new Cache($cacheProvider);
+$cacheProviderDecorator = new CacheProviderDecorator($cacheProvider);
 ```
 A Cache builder can be used.
 ```php
