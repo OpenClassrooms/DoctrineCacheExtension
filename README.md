@@ -43,10 +43,6 @@ A factory can be used.
 ```php
 $factory = new CacheProviderDecoratorFactory();
 $cacheProvider = $factory->create('array');
-
-// Optional default lifetime
-$factory = new CacheProviderDecoratorFactory();
-$factory->setDefaultLifetime(100);
 ```
 
 ### Default lifetime
