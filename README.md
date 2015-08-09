@@ -33,81 +33,49 @@ use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
 
 ## Usage
 ### Instantiation
-OpenClassrooms CacheProviderDecorator needs a Doctrine CacheProvider to be instantiate.
+OpenClassrooms CacheProviderDecorator needs a Doctrine CacheProvider to be instantiated.
 ```php
 $cacheProvider = new ArrayCache();
-
 $cacheProviderDecorator = new CacheProviderDecorator($cacheProvider);
 ```
 
 A factory can be used.
 ```php
-// Default builder, build a cache using ArrayCache Provider
-$cache = new CacheBuilderImpl()->build();
-
-// Using a CacheProvider
-$cache = new CacheBuilderImpl()
-    ->withCacheProvider($redisCache)
-    ->build();
+$factory = new CacheProviderDecoratorFactory();
+$cacheProvider = $factory->create('array');
 
 // Optional default lifetime
-$cache = new CacheBuilderImpl()
-    ->withCacheProvider($redisCache)
-    ->withDefaultLifetime(300)
-    ->build();
+$factory = new CacheProviderDecoratorFactory();
+$factory->setDefaultLifetime(100);
 ```
 
 ### Default lifetime
+Specify lifetime in the constructor:
 ```php
-$cache->setDefaultLifetime(300);
-$cache->save($id, $data);
+$cacheProviderDecorator = new CacheProviderDecorator($cacheProvider, 100);
+$cacheProviderDecorator->save($id, $data);
 ```
-
+Or using the factory:
+```php
+$cacheProvider = $factory->create('array', 100);
+```
+Or specify a default lifetime for all the cache providers:
+```php
+$factory = new CacheProviderDecoratorFactory();
+$factory->setDefaultLifetime(100);
+```
 ### Fetch with namespace
 ```php
-$data = $cache->fetchWithNamespace($id, $namespaceId);
+$data = $cacheProviderDecorator->fetchWithNamespace($id, $namespaceId);
 ```
 
 ### Save with namespace
 ```php
 // Namespace and life time can be null
-$data = $cache->saveWithNamespace($id, $data, $namespaceId, $lifeTime);
+$data = $cacheProviderDecorator->saveWithNamespace($id, $data, $namespaceId, $lifeTime);
 ```
 
 ### Cache invalidation
 ```php
-$cache->invalidate($namespaceId);
-```
-### CacheProvider Builder
-The library provides a CacheProvider Builder
-
-```php
-// Memcache
-$cacheProvider = new CacheProviderBuilderImpl()
-    ->create(CacheProviderType::MEMCACHE)
-    ->withHost('127.0.0.1')
-    ->withPort(11211) // Default 11211
-    ->withTimeout(1) // Default 1
-    ->build();
-
-// Memcached
-$cacheProvider = new CacheProviderBuilderImpl()
-    ->create(CacheProviderType::MEMCACHED)
-    ->withHost('127.0.0.1')
-    ->withPort(11211) // Default 11211
-    ->build();
-
-// Redis
-$cacheProvider = new CacheProviderBuilderImpl()
-    ->create(CacheProviderType::REDIS)
-    ->withHost('127.0.0.1')
-    ->withPort(6379) // Default 6379
-    ->withTimeout(0.0) // Default 0.0
-    ->build();
-
-// Array
-$cacheProvider = new CacheProviderBuilderImpl()
-    ->create(CacheProviderType::ARRAY_CACHE)
-    ->build();
-
+$cacheProviderDecorator->invalidate($namespaceId);
 ```
