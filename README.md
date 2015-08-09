@@ -1,7 +1,7 @@
 # Doctrine Cache Extension
-[![Build Status](https://travis-ci.org/OpenClassrooms/Cache.svg?branch=master)](https://travis-ci.org/OpenClassrooms/Cache)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/cb725585-b433-4a21-96aa-30a0148ecd9f/mini.png)](https://insight.sensiolabs.com/projects/cb725585-b433-4a21-96aa-30a0148ecd9f)
-[![Coverage Status](https://coveralls.io/repos/OpenClassrooms/Cache/badge.png?branch=master)](https://coveralls.io/r/OpenClassrooms/Cache?branch=master)
+[![Build Status](https://travis-ci.org/OpenClassrooms/DoctrineCacheExtension.svg?branch=master)](https://travis-ci.org/OpenClassrooms/DoctrineCacheExtension)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d595725d-9e23-4386-b0ba-444e1a118f60/mini.png)](https://insight.sensiolabs.com/projects/d595725d-9e23-4386-b0ba-444e1a118f60)
+[![Coverage Status](https://coveralls.io/repos/OpenClassrooms/DoctrineCacheExtension/badge.svg?branch=master&service=github)](https://coveralls.io/github/OpenClassrooms/DoctrineCacheExtension?branch=master)
 
 Doctrine Cache extension adds features to Doctrine Cache implementation
 - Default lifetime
@@ -39,7 +39,8 @@ $cacheProvider = new ArrayCache();
 
 $cacheProviderDecorator = new CacheProviderDecorator($cacheProvider);
 ```
-A Cache builder can be used.
+
+A factory can be used.
 ```php
 // Default builder, build a cache using ArrayCache Provider
 $cache = new CacheBuilderImpl()->build();
