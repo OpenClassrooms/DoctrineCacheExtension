@@ -3,7 +3,7 @@
 namespace OpenClassrooms\Tests\DoctrineCacheExtension;
 
 use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecoratorFactory;
-use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecoratorFactoryImpl;
+use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecoratorFactoryInterface;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -13,7 +13,7 @@ class CacheProviderDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
     const DIRECTORY = __DIR__.'/../tmp';
 
     /**
-     * @var CacheProviderDecoratorFactory
+     * @var CacheProviderDecoratorFactoryInterface
      */
     private $factory;
 
@@ -72,7 +72,7 @@ class CacheProviderDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function Create($inputType, $expectedCacheProvider, $args)
     {
-        $factory = new CacheProviderDecoratorFactoryImpl();
+        $factory = new CacheProviderDecoratorFactory();
         $actualCacheProvider = $factory->create($inputType, ...$args);
         $this->assertAttributeInstanceOf($expectedCacheProvider, 'cacheProvider', $actualCacheProvider);
     }
@@ -82,6 +82,6 @@ class CacheProviderDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->factory = new CacheProviderDecoratorFactoryImpl();
+        $this->factory = new CacheProviderDecoratorFactory();
     }
 }

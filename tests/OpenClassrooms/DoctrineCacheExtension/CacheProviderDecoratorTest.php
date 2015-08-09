@@ -3,8 +3,8 @@
 namespace OpenClassrooms\Tests\DoctrineCacheExtension;
 
 use Doctrine\Common\Cache\RedisCache;
+use OpenClassrooms\DoctrineCacheExtension\AbstractCacheProviderDecorator;
 use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
-use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecoratorImpl;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -25,7 +25,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
     private $emptyCacheProvider;
 
     /**
-     * @var CacheProviderDecorator
+     * @var AbstractCacheProviderDecorator
      */
     private $emptyCacheProviderDecorator;
 
@@ -35,7 +35,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
     private $cacheProvider;
 
     /**
-     * @var CacheProviderDecorator
+     * @var AbstractCacheProviderDecorator
      */
     private $cacheProviderDecorator;
 
@@ -112,7 +112,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
     public function call()
     {
         /** @var RedisCache $cacheProviderDecorator */
-        $cacheProviderDecorator = new CacheProviderDecoratorImpl(new RedisCache());
+        $cacheProviderDecorator = new CacheProviderDecorator(new RedisCache());
         $this->assertNull($cacheProviderDecorator->getRedis());
     }
 
@@ -125,7 +125,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->emptyCacheProvider->doSaveHasBeenCalled);
         $this->assertEquals(self::EXPECTED_ID, $this->emptyCacheProvider->id);
         $this->assertEquals(CacheProviderMock::DATA, $this->emptyCacheProvider->data);
-        $this->assertEquals(CacheProviderDecorator::DEFAULT_LIFE_TIME, $this->emptyCacheProvider->lifeTime);
+        $this->assertEquals(AbstractCacheProviderDecorator::DEFAULT_LIFE_TIME, $this->emptyCacheProvider->lifeTime);
     }
 
     /**
@@ -153,7 +153,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->emptyCacheProvider->doSaveHasBeenCalled);
         $this->assertEquals(self::EXPECTED_ID, $this->emptyCacheProvider->id);
         $this->assertEquals(CacheProviderMock::DATA, $this->emptyCacheProvider->data);
-        $this->assertEquals(CacheProviderDecorator::DEFAULT_LIFE_TIME, $this->emptyCacheProvider->lifeTime);
+        $this->assertEquals(AbstractCacheProviderDecorator::DEFAULT_LIFE_TIME, $this->emptyCacheProvider->lifeTime);
     }
 
     /**
@@ -242,9 +242,9 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->emptyCacheProvider = new CacheProviderMock();
-        $this->emptyCacheProviderDecorator = new CacheProviderDecoratorImpl($this->emptyCacheProvider);
+        $this->emptyCacheProviderDecorator = new CacheProviderDecorator($this->emptyCacheProvider);
         $this->cacheProvider = new CacheProviderMock();
         $this->cacheProvider->save(CacheProviderMock::ID, CacheProviderMock::DATA);
-        $this->cacheProviderDecorator = new CacheProviderDecoratorImpl($this->cacheProvider);
+        $this->cacheProviderDecorator = new CacheProviderDecorator($this->cacheProvider);
     }
 }
