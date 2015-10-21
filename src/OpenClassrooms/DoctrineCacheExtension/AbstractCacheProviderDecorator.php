@@ -119,7 +119,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     public function __call($name, $arguments)
     {
-        return $this->cacheProvider->$name($arguments);
+        return $this->cacheProvider->$name(...$arguments);
     }
 
     /**
