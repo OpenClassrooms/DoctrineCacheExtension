@@ -3,7 +3,7 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d595725d-9e23-4386-b0ba-444e1a118f60/mini.png)](https://insight.sensiolabs.com/projects/d595725d-9e23-4386-b0ba-444e1a118f60)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/DoctrineCacheExtension/badge.svg?branch=master&service=github)](https://coveralls.io/github/OpenClassrooms/DoctrineCacheExtension?branch=master)
 
-Doctrine Cache extension adds features to Doctrine Cache implementation
+The Doctrine Cache extension adds the following features to Doctrine Cache implementation:
 - Default lifetime
 - Fetch with a namespace
 - Save with a namespace
@@ -39,7 +39,7 @@ $cacheProvider = new ArrayCache();
 $cacheProviderDecorator = new CacheProviderDecorator($cacheProvider);
 ```
 
-A factory can be used.
+A factory can be used to accomplish this.
 ```php
 $factory = new CacheProviderDecoratorFactory();
 $cacheProvider = $factory->create('array');
@@ -51,7 +51,7 @@ Specify lifetime in the constructor:
 $cacheProviderDecorator = new CacheProviderDecorator($cacheProvider, 100);
 $cacheProviderDecorator->save($id, $data);
 ```
-Or using the factory:
+Or via the factory:
 ```php
 $cacheProvider = $factory->create('array', 100);
 ```
