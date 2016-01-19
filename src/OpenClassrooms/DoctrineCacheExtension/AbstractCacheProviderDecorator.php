@@ -28,6 +28,22 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
+     * @return CacheProvider
+     */
+    public function getCacheProvider()
+    {
+        return $this->cacheProvider;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefaultLifetime()
+    {
+        return $this->defaultLifetime;
+    }
+
+    /**
      * Fetches an entry from the cache.
      *
      * @param string $id          The id of the cache entry to fetch.
@@ -83,10 +99,10 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     public function save($id, $data, $lifeTime = null)
     {
         if (null === $lifeTime) {
-            $lifeTime = $this->defaultLifetime;
+            $lifeTime = $this->getDefaultLifetime();
         }
 
-        return $this->cacheProvider->save($id, $data, $lifeTime);
+        return $this->getCacheProvider()->save($id, $data, $lifeTime);
     }
 
     /**
@@ -119,7 +135,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     public function __call($name, $arguments)
     {
-        return $this->cacheProvider->$name(...$arguments);
+        return $this->getCacheProvider()->$name(...$arguments);
     }
 
     /**
@@ -127,7 +143,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doFetch($id)
     {
-        return $this->cacheProvider->doFetch($id);
+        return $this->getCacheProvider()->doFetch($id);
     }
 
     /**
@@ -135,7 +151,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doContains($id)
     {
-        return $this->cacheProvider->doContains($id);
+        return $this->getCacheProvider()->doContains($id);
     }
 
     /**
@@ -143,7 +159,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doSave($id, $data, $lifeTime = 0)
     {
-        return $this->cacheProvider->doSave($id, $data, $lifeTime);
+        return $this->getCacheProvider()->doSave($id, $data, $lifeTime);
     }
 
     /**
@@ -151,7 +167,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doDelete($id)
     {
-        return $this->cacheProvider->doDelete($id);
+        return $this->getCacheProvider()->doDelete($id);
     }
 
     /**
@@ -159,7 +175,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doFlush()
     {
-        return $this->cacheProvider->doFlush();
+        return $this->getCacheProvider()->doFlush();
     }
 
     /**
@@ -167,6 +183,6 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
      */
     protected function doGetStats()
     {
-        return $this->cacheProvider->doGetStats();
+        return $this->getCacheProvider()->doGetStats();
     }
 }
