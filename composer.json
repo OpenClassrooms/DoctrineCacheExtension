@@ -29,7 +29,7 @@
   },
   "require-dev": {
     "mockery/mockery": "dev-master",
-    "phpunit/phpunit": "~4.0",
+    "phpunit/phpunit": "~5.0",
     "satooshi/php-coveralls": "dev-master"
   },
   "extra": {
