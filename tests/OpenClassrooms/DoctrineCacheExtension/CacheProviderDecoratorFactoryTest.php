@@ -40,7 +40,7 @@ class CacheProviderDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tearDownAfterClass()
     {
@@ -78,7 +78,7 @@ class CacheProviderDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function setUp()
     {

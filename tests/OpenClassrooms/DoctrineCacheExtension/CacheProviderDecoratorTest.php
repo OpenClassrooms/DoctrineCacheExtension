@@ -102,7 +102,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
      */
     public function doGetStats()
     {
-        $this->assertNull($this->cacheProviderDecorator->getStats());
+        $this->assertNotEmpty($this->cacheProviderDecorator->getStats());
         $this->assertTrue($this->cacheProvider->doGetStatsHasBeenCalled);
     }
 
@@ -237,7 +237,7 @@ class CacheProviderDecoratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function setUp()
     {

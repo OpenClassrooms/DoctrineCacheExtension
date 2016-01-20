@@ -28,22 +28,6 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @return CacheProvider
-     */
-    public function getCacheProvider()
-    {
-        return $this->cacheProvider;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDefaultLifetime()
-    {
-        return $this->defaultLifetime;
-    }
-
-    /**
      * Fetches an entry from the cache.
      *
      * @param string $id          The id of the cache entry to fetch.
@@ -106,6 +90,22 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
+     * @return int
+     */
+    public function getDefaultLifetime()
+    {
+        return $this->defaultLifetime;
+    }
+
+    /**
+     * @return CacheProvider
+     */
+    public function getCacheProvider()
+    {
+        return $this->cacheProvider;
+    }
+
+    /**
      * Puts data into the cache.
      *
      * @param string $id          The cache id.
@@ -131,7 +131,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __call($name, $arguments)
     {
@@ -139,7 +139,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doFetch($id)
     {
@@ -147,7 +147,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doContains($id)
     {
@@ -155,7 +155,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doSave($id, $data, $lifeTime = 0)
     {
@@ -163,7 +163,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doDelete($id)
     {
@@ -171,7 +171,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doFlush()
     {
@@ -179,7 +179,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function doGetStats()
     {
