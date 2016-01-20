@@ -86,7 +86,7 @@ abstract class AbstractCacheProviderDecorator extends CacheProvider
             $lifeTime = $this->getDefaultLifetime();
         }
 
-        return $this->getCacheProvider()->save($id, $data, $lifeTime);
+        return parent::save($id, $data, $lifeTime);
     }
 
     /**
