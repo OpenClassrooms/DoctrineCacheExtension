@@ -3,6 +3,7 @@
 namespace OpenClassrooms\DoctrineCacheExtension;
 
 use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\ApcuCache;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\CouchbaseCache;
 use Doctrine\Common\Cache\FilesystemCache;
@@ -34,6 +35,9 @@ class CacheProviderDecoratorFactory implements CacheProviderDecoratorFactoryInte
         switch ($type) {
             case 'apc':
                 $cacheProvider = new ApcCache();
+                break;
+            case 'apcu':
+                $cacheProvider = new ApcuCache();
                 break;
             case 'array':
                 $cacheProvider = new ArrayCache();
